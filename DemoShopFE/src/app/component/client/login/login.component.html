@@ -1,0 +1,21 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <h1><p style="text-align: center;">Login </p></h1>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" ngModel class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" class="form-control">
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+    <br>
+    <h5>Want to Create Account ? <a routerLink="/register" >Click Here</a></h5>
+  </form>
+  
+  
+  
+  
+  
+  
