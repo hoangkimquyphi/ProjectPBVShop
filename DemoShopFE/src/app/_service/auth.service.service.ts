@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -36,6 +36,16 @@ export class AuthServiceService {
       this.router.navigate(['/']);
     }
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.loggedIn.next(false);
+  }
+
+
+
+
+
   register(
     username: string,
     email: string,
@@ -65,6 +75,7 @@ export class AuthServiceService {
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
   //adding product in
+  
 }
 
 

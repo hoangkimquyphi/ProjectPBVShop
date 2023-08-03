@@ -16,23 +16,27 @@ export class IndexComponent implements OnInit {
   listItemInCart : any;
   listCategory:any;
  AuthServiceService: any;
+ loader: Boolean=true;
 
   constructor(private productService: ProductService,public cartService:CartService,private categoryService: CategoryService,private authService:AuthServiceService,private router: Router){}
 
   ngOnInit(): void {
     this.getListProduct();
+    this.getListCategory();
   }
 
 
   getListProduct(){
     this.productService.getListProduct().subscribe(data =>{
       this.listProduct = data;
+      this.loader=false;
       this.cartService.loadCart();
     })
   }
   getListCategory(){
     this.categoryService.getListCategory().subscribe(data =>{
       this.listCategory = data;
+      this.loader=false;
     })
   }
 
@@ -40,8 +44,10 @@ export class IndexComponent implements OnInit {
     if (this.authService.isLoggedIn()){
     this.cartService.getItems();
     this.cartService.addToCart(item,1);
+    alert('Add card successfully')
     }else{
       this.router.navigate(['/login']);
+
 
 
     }
@@ -56,11 +62,16 @@ export class IndexComponent implements OnInit {
     let quantity : number = event.target.value;
     this.cartService.updateCart(item,quantity);
   }
-  logout() {
-    sessionStorage.removeItem('token');
-    this.authService.setLoggedIn(false);
-    // Chuyển hướng đến trang đăng nhập
+  onLogout(){
+    localStorage.removeItem('seller');
+    this.router.navigate(['/login'])
   }
+  userAuthReload(){
+    if(localStorage.getItem('user')){
+      this.router.navigate(['/login']);
+    }
+  }
+
   p: number = 1;
   items: any[] = Array.from({length: 100}).map((_, i) => `Item ${i + 1}`);
 

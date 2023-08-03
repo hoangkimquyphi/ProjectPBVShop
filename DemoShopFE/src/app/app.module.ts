@@ -18,6 +18,10 @@ import { LoginComponent } from './component/client/login/login.component';
 import { RegisterComponent } from './component/client/register/register.component';
 import { PagetionComponent } from './component/client/pagetion/pagetion.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddproductComponent } from './component/admin/addproduct/addproduct.component';
+import { EditproductComponent } from './component/admin/editproduct/editproduct.component';
+import { LoginAdminComponent } from './component/admin/login-admin/login-admin.component';
+
 
 
 
@@ -37,7 +41,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     PagetionComponent,
-    
+    AddproductComponent,
+    EditproductComponent,
+    LoginAdminComponent,
+
   
   ],
   imports: [

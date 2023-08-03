@@ -15,6 +15,16 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  addProduct(data: Product) {
+    return this.http.post('http://localhost:4000/api/products/', data);
+  }
+
+  updateProduct(product: Product) {
+    return this.http.put<Product>(
+      `http://localhost:4000/api/products/${product.id}`,
+      product
+    );
+  }
 
   getListProduct(): Observable<any> {
     return this.http.get('http://localhost:4000/api/products', httpOptions);
@@ -39,18 +49,18 @@ export class ProductService {
     return this.http.post('http://localhost:4000/api/products/', formData);
   }
 
-  updateProduct(id: number, product: Product, file: File): Observable<any> {
-    const formData: FormData = new FormData();
-    Object.keys(product).forEach(key => {
-      let value = product[key as keyof Product];
-      if (typeof value === 'number') {
-        value = value.toString();
-      }
-      formData.append(key, value);
-    });
-    formData.append('file', file);
-    return this.http.put('http://localhost:4000/api/products/' +id,formData);
-  }
+  // updateProduct(id: number, product: Product, file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   Object.keys(product).forEach(key => {
+  //     let value = product[key as keyof Product];
+  //     if (typeof value === 'number') {
+  //       value = value.toString();
+  //     }
+  //     formData.append(key, value);
+  //   });
+  //   formData.append('file', file);
+  //   return this.http.put('http://localhost:4000/api/products/' +id,formData);
+  // }
 
 
   deleteProduct(id: number): Observable<any> {

@@ -1,0 +1,59 @@
+/* Thiết kế cho phần container chứa chi tiết sản phẩm */
+.product-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Thiết kế cho hình ảnh sản phẩm */
+  .product-img {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Thiết kế cho các chi tiết sản phẩm */
+  .details {
+    padding: 20px;
+  }
+  
+  .details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .product-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .quantity-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .quantity-group button {
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .quantity-group input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

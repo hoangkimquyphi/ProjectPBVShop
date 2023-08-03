@@ -29,18 +29,23 @@
                                     <div class="col"><p class="text-muted mb-2">PAYMENT DETAILS</p><hr class="mt-0"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="NAME" class="small text-muted mb-1">Name</label>
-                                    <input type="text" class="form-control form-control-sm" formControlName="name" name="NAME" id="NAME" aria-describedby="helpId" placeholder="name">
+                                    <label for="NAME" class="small text-muted mb-1">customer_name</label>
+                                    <input type="text" class="form-control form-control-sm" formControlName="name" name="NAME" id="NAME" aria-describedby="helpId" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="NAME" class="small text-muted mb-1">Email</label>
-                                    <input type="text" class="form-control form-control-sm" formControlName="email" name="NAME" id="NAME" aria-describedby="helpId" placeholder="email">
+                                    <label for="NAME" class="small text-muted mb-1">customer_email</label>
+                                    <input type="text" class="form-control form-control-sm" formControlName="email" name="NAME" id="NAME" aria-describedby="helpId" placeholder="Email">
                                 </div>
+                                <div class="form-group">
+                                    <label for="NAME" class="small text-muted mb-1">Phone</label>
+                                    <input type="text" class="form-control form-control-sm" formControlName="email" name="NAME" id="NAME" aria-describedby="helpId" placeholder="Phone">
+                                </div>
+                                
                                 <div class="row no-gutters">
                                     <div class="col-sm-12 pr-sm-12">
                                         <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">Phone</label>
-                                            <input type="text" class="form-control form-control-sm" formControlName="phone" name="NAME" id="NAME" aria-describedby="helpId" placeholder="phone">
+                                            <label for="NAME" class="small text-muted mb-1">shipping_address</label>
+                                            <input type="text" class="form-control form-control-sm" formControlName="phone" name="NAME" id="NAME" aria-describedby="helpId" placeholder="address">
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +71,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">{{item.quantity}}</p></div>
+                                    <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">Số Lượng {{item.quantity}} </p></div>
                                     <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{item.price * item.quantity | currency:'USD' }}</b></p></div>
                                 </div>
 
@@ -79,7 +84,7 @@
                                         </div>
                                         <div class="row justify-content-between">
                                             <div class="col"><p class="mb-1"><b>Shipping</b></p></div>
-                                            <div class="flex-sm-col col-auto"><p class="mb-1"><b>0 SEK</b></p></div>
+                                            <div class="flex-sm-col col-auto"><p class="mb-1"><b>1 $</b></p></div>
                                         </div>
                                         <div class="row justify-content-between">
                                             <div class="col-4"><p ><b>Total</b></p></div>
@@ -88,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-5 mt-4 ">
-                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="submit" class="btn btn-block btn-outline-primary btn-lg">Pay</button></div>
+                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="submit" class="btn btn-block btn-outline-primary btn-lg">payment for the order</button></div>
                                 </div>
                             </div>
                         </div>

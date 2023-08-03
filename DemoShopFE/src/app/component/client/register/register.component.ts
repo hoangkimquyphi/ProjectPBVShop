@@ -24,11 +24,12 @@ export class RegisterComponent {
     this.userService.register(this.username, this.email, this.full_name, this.phone,this.address,this.gender,this.birthday, this.password,this.password_confirmation).subscribe(
       (response) => {
         this.router.navigate(['/loginn'])
+        alert('Logged in successfully')
 
       },
       (error) => {
         console.log('register failed:', error);
-        alert('Vui lòng nhập đầy đủ các trường và đúng định dạng')
+        alert('Please enter all fields and correct format')
       }
     );
 

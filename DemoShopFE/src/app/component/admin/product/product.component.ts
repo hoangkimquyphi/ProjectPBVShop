@@ -87,29 +87,29 @@ export class ProductComponent implements OnInit {
       material: this.productForm.get('material')?.value,
       brand: this.productForm.get('brand')?.value,
       id: this.productForm.get('id')?.value,
-         
 
+         
     }
   
-    if (this.productForm.valid && this.selectedFile){
-      if (this.editingProduct) {
-        this.productService.updateProduct(this.editingProduct.id, data, this.selectedFile).subscribe({
-          next: res=>{
-            this.getListProduct();
-          }
-        })
-      } else {
-        this.productService.createProduct(data,this.selectedFile).subscribe({
-          next: res=>{
-            this.getListProduct();
-          }
-        })
-      }
-    }
+    // if (this.productForm.valid && this.selectedFile){
+    //   if (this.editingProduct) {
+    //     this.productService.updateProduct(this.editingProduct.id, data, this.selectedFile).subscribe({
+    //       next: res=>{
+    //         this.getListProduct();
+    //       }
+    //     })
+    //   } else {
+    //     this.productService.createProduct(data,this.selectedFile).subscribe({
+    //       next: res=>{
+    //         this.getListProduct();
+    //       }
+    //     })
+    //   }
+    // }
   }
 
 
-  editCategory(data: any){
+  updateProduct(data: any){
     this.editingProduct = data;
     this.productForm.patchValue({
       name: data.name,
@@ -122,7 +122,7 @@ export class ProductComponent implements OnInit {
       brand: data.brand,
       image_url: data.image_url,
       id: data.id,
-
+      
     })
     console.log(this.productForm.value);
   }
@@ -130,7 +130,8 @@ export class ProductComponent implements OnInit {
   deleteProduct(){
     this.productService.deleteProduct(this.deleteId).subscribe(data =>{
       this.getListProduct();
-    })
+    });
+    location.reload();
   }
 
 

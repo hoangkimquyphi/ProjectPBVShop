@@ -11,20 +11,27 @@ import { LoginComponent } from './component/client/login/login.component';
 import { RegisterComponent } from './component/client/register/register.component';
 import { PagetionComponent } from './component/client/pagetion/pagetion.component';
 import { ProductDetailsComponent } from './component/client/product-details/product-details.component';
+import { AddproductComponent } from './component/admin/addproduct/addproduct.component';
+import { EditproductComponent } from './component/admin/editproduct/editproduct.component';
+import { LoginAdminComponent } from './component/admin/login-admin/login-admin.component';
 
 const routes: Routes = [
   {path:'',component: IndexComponent},
   {path: 'cart',component:CartComponent},
-  {path:'productdetails/:id',component:ProductDetailsComponent},
+  {path:'product/:id',component:ProductDetailsComponent},
   {path: 'login',component:LoginComponent},
   {path: 'pagination',component:PagetionComponent},
   {path: 'register',component:RegisterComponent},
   {path:'order',component:OrderComponent},
+  {path:'addproduct',component:AddproductComponent},
+  {path:'loginadmin',component:LoginAdminComponent},
+  {path:'editproduct/:id',component:EditproductComponent},
   {path:'admin',component: DashboardComponent,
 
     children: [
       {path:'',component:CategoryComponent},
       {path:'product',component:ProductComponent},
+      {path:'addproduct',component:AddproductComponent},
       {path:'order',component:UserOrderComponent}
       
     ]

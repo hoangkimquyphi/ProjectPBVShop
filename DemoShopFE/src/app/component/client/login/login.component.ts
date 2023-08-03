@@ -21,8 +21,7 @@ export class LoginComponent implements   OnInit {
   }
 
   ngOnInit(): void {
-    this.user.userAuthReload();
-
+  
   }
 
   onSubmit(): void {
@@ -33,10 +32,12 @@ export class LoginComponent implements   OnInit {
         const token = response.token;
         localStorage.setItem('token', token);
         console.log('Login successful:', response);
+        alert('Logged in successfully')
         this.router.navigate(['/']);
       },
       (error) => {
         console.log('Login failed:', error.error.message);
+        alert('Wrong account or password')
       }
     );
 

@@ -9,7 +9,7 @@
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Thêm mới danh mục</h4>
+        <h4 class="modal-title"> Add new list</h4>
         <button type="button" class="btn-close"  data-bs-dismiss="modal" ></button>
       </div>
 
@@ -35,15 +35,17 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Tên danh mục</th>
-      <th>Công cụ</th>
+      <th>Stt</th>
+      <th> List name</th>
+      <th> Description</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of listCategory;">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
       <td>
         <button type="button" (click)="editCategory(item)" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button>
         <button type="button" (click)="getDeleteId(item.id)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger text-light ms-2">Delete</button>
