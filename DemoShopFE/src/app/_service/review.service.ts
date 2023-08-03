@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IReview } from '../class/review';
+import { IReview } from '../class/IReview';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
   averageRating = 0;
+
   constructor(private http: HttpClient) { }
 
   getReviewsByProductId(productId: number): Observable<IReview> {
@@ -17,7 +18,7 @@ export class ReviewService {
 
 
   }
-  
+
   // addReview(review: Review, productId: number) {
   //   const token = this.authService.getToken();
   //   const headers = new HttpHeaders().set('Authorization', `Long ${token}`);
