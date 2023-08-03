@@ -8,28 +8,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthServiceService {
 
+  private accessToken: string|any;
+
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`http://localhost:4000/api/users/login`, { username, password });
+  setAccessToken(token: string) {
+    this.accessToken = token;
+  }
+
+  getAccessToken(): string {
+    return this.accessToken;
+  }
+
+  login(username: string, password: string) {
+    return this.http.post('http://localhost:4000/api/users/login', { username, password });
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
-  }
-
-  setLoggedIn(value: boolean) {
-    this.loggedIn.next(value);
-  }
-  
-  setToken(token: string) {
-    sessionStorage.setItem('token', token);
-  }
-
-  removeToken() {
-    sessionStorage.removeItem('token');
   }
   userAuthReload(){
     if(localStorage.getItem('user')){
@@ -56,7 +54,7 @@ export class AuthServiceService {
     birthday: Number,
     password: string,
     password_confirmation: string,
-  
+
   ): Observable<any> {
     const url = 'http://localhost:4000/api/users/register'; // URL đến mock API
     const body = {
@@ -75,7 +73,17 @@ export class AuthServiceService {
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
   //adding product in
-  
+  // checkDuplicateUsername(username: string) {
+  //   return this.http.get<any>(`http://localhost:4000/api/users/${username}`);
+  // }
+
+  // checkDuplicateEmail(email: string) {
+  //   return this.http.get<any>(`/api/check-email/${email}`);
+  // }
+
+  // checkDuplicateFullName(fullName: string) {
+  //   return this.http.get<any>(`/api/check-fullname/${fullName}`);
+  // }
 }
 
 

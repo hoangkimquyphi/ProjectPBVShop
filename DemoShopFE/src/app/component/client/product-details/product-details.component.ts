@@ -5,6 +5,7 @@ import { CartService } from 'src/app/_service/cart.service';
 import { ProductService } from 'src/app/_service/product.service';
 import { ReviewService } from 'src/app/_service/review.service';
 import { Product } from 'src/app/class/product';
+import { IReview } from 'src/app/class/IReview';
 
 @Component({
   selector: 'app-product-details',
@@ -12,23 +13,42 @@ import { Product } from 'src/app/class/product';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent  implements OnInit {
+  reviews: IReview = { reviews: [] };
   productData: undefined | Product;
   productMessage: undefined | string;
   quantity:number=1;
-  
+
   // reviewList: IReview | any;
   constructor(private route: ActivatedRoute,private product: ProductService,public cartService:CartService,private authService:AuthServiceService,private router: Router, private review: ReviewService) {}
 
   ngOnInit(): void {
-    let productId = this.route.snapshot.paramMap.get('id');
+
+
+
+
+
+    let productId = this.route.snapshot.params['id'];
+    this.review.getReviewsByProductId(productId)
+      .subscribe(reviews => {
+        console.log("review", reviews);
+
+        this.reviews = reviews
+
+      });
+    productId = this.route.snapshot.paramMap.get('id');
     console.warn(productId);
     productId &&
       this.product.getProduct(productId).subscribe((data) => {
         console.warn(data);
         this.productData = data;
-    
+
       });
-      
+
+  }
+
+  calculateAverageRating(): number {
+    const totalRating = this.reviews.reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / this.reviews.reviews.length;
   }
   submit(data: any) {
     if (this.productData) {
@@ -56,7 +76,7 @@ export class ProductDetailsComponent  implements OnInit {
 
 
     }
-    
+
   }
   handleQuantity(val:string){
     if(this.quantity<20 && val==='plus'){
@@ -69,7 +89,7 @@ export class ProductDetailsComponent  implements OnInit {
   removeFromCart(item:any){
     this.cartService.remove(item);
   }
-  
+
 
   updateQuantity(item: any,event: any){
     let quantity : number = event.target.value;
@@ -88,6 +108,9 @@ export class ProductDetailsComponent  implements OnInit {
   p: number = 1;
   items: any[] = Array.from({length: 100}).map((_, i) => `Item ${i + 1}`);
 
+  getStarArray(rating: number): number[] {
+    return Array(rating).fill(0);
+  }
 
 }
 

@@ -10,38 +10,32 @@ import { ProductService } from 'src/app/_service/product.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements   OnInit {
-  loginForm: FormGroup;
-  showLogin:boolean=true
-  authError:string="";
-  constructor(private formBuilder: FormBuilder, private authService: AuthServiceService,private router: Router,private user: AuthServiceService, private product:ProductService) {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
   ngOnInit(): void {
-  
+    this.user.userAuthReload();
   }
+  constructor(private authService: AuthServiceService,private router: Router,private user: AuthServiceService, private product:ProductService) {}
 
-  onSubmit(): void {
-    const { username, password } = this.loginForm.value;
-
-    this.authService.login(username, password).subscribe(
-      (response) => {
-        const token = response.token;
-        localStorage.setItem('token', token);
+  onSubmit() {
+    this.authService.login(this.username, this.password).subscribe(
+      (response:any) => {
         console.log('Login successful:', response);
-        alert('Logged in successfully')
+        localStorage.setItem('access_token', response.access_token);
+        alert('Login susseces');
         this.router.navigate(['/']);
       },
       (error) => {
-        console.log('Login failed:', error.error.message);
-        alert('Wrong account or password')
+        if (error.status === 404 && error.error.message === 'user is not found') {
+          this.errorMessage = 'User not found';
+        } else if (error.status === 401 && error.error.message === 'Unauthorized') {
+          this.errorMessage = 'Invalid username or password';
+        } else {
+          this.errorMessage = 'Unknown error occurred';
+        }
       }
     );
-
-
-    
   }
 }
